@@ -135,7 +135,7 @@ function Balloons() {
       >
         🎈
       </span>
-et    </div>
+    </div>
   );
 }
 
@@ -398,8 +398,8 @@ function BirthdayParty() {
                 emoji={w.emoji}
                 title={w.title}
                 note={w.note}
-                tint={WISH_TINTS[i]}
-                flipped={flipped[i]}
+                tint={WISH_TINTS[i] ?? "bg-sunshine/30"}
+                flipped={flipped[i] ?? false}
                 onFlip={() => flip(i)}
               />
             ))}
