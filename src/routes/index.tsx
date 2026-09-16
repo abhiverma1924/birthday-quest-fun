@@ -8,7 +8,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -276,6 +276,59 @@ function WishCard({
   );
 }
 
+function PartyMusic() {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const playingRef = useRef(false);
+  const [playing, setPlaying] = useState(false);
+
+  const play = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.38;
+    void audio.play().then(() => {
+      playingRef.current = true;
+      setPlaying(true);
+    }).catch(() => {
+      playingRef.current = false;
+      setPlaying(false);
+    });
+  };
+
+  const pause = () => {
+    audioRef.current?.pause();
+    playingRef.current = false;
+    setPlaying(false);
+  };
+
+  useEffect(() => {
+    const start = () => play();
+    window.addEventListener("pointerdown", start, { once: true });
+    return () => window.removeEventListener("pointerdown", start);
+  }, []);
+
+  return (
+    <>
+      <audio
+        ref={audioRef}
+        src={`${import.meta.env.BASE_URL}birthday-music.m4a`}
+        loop
+        preload="auto"
+        playsInline
+      />
+      <button
+        type="button"
+        onClick={() => (playingRef.current ? pause() : play())}
+        aria-label={playing ? "Pause birthday music" : "Play birthday music"}
+        className={`wob fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-candy text-2xl text-cake shadow-[0_6px_0_0_var(--color-inkwell)] ${
+          playing ? "animate-wiggle" : ""
+        }`}
+      >
+        {playing ? "🎵" : "🔇"}
+      </button>
+    </>
+  );
+}
+
 function BirthdayParty() {
   const [candles, setCandles] = useState<boolean[]>([false, false, false, false, false]);
   const [wrongPicks, setWrongPicks] = useState<string[]>([]);
@@ -335,6 +388,7 @@ function BirthdayParty() {
 
   return (
     <div className="min-h-screen bg-cake font-body text-inkwell">
+      <PartyMusic />
       {/* HERO */}
       <header className="relative overflow-hidden">
         <Balloons />
