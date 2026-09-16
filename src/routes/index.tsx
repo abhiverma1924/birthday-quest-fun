@@ -1,5 +1,14 @@
+import { MemoryFrame, type Memory } from "@/components/MemoryFrame";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -67,15 +76,97 @@ async function popConfetti(big = false) {
   }
 }
 
-type Memory = { src?: string; caption: string };
-
 const MEMORIES: Memory[] = [
-  { caption: "Memory #1" },
-  { caption: "Memory #2" },
-  { caption: "Memory #3" },
-  { caption: "Memory #4" },
-  { caption: "Memory #5" },
-  { caption: "Memory #6" },
+  {
+    src: "/memories/memory-frame-1-serious-boyfriend.jpg",
+    caption: "Serious boyfriend energy 👑",
+    frame: "baked",
+  },
+  {
+    src: "/memories/memory-frame-2-beach-romcom.jpg",
+    caption: "Beach romcom, starring us 🏆",
+    frame: "baked",
+  },
+  {
+    src: "/memories/memory-frame-3-sunflower-third-wheel.jpg",
+    caption: "The sunflower third-wheeled us 🌻",
+    frame: "baked",
+  },
+  {
+    src: "/memories/memory-frame-4-tropical-dance.jpg",
+    caption: "Tropical dance scene 💃",
+    frame: "baked",
+  },
+  {
+    src: "/memories/memory-boat-backwaters.jpg",
+    caption: "Backwater cruise 🚤",
+    frame: "postcard",
+  },
+  {
+    src: "/memories/memory-conference.jpg",
+    caption: "Conference power couple 🎓",
+    frame: "candy",
+  },
+  {
+    src: "/memories/memory-beach-beanbags.jpg",
+    caption: "Bean-bag beach day 🏖️",
+    frame: "beach",
+  },
+  {
+    src: "/memories/memory-river-lights.jpg",
+    caption: "River lights, just us ✨",
+    frame: "tropical",
+  },
+  {
+    src: "/memories/memory-night-market.jpg",
+    caption: "Night market glow 🌃",
+    frame: "candy",
+  },
+  {
+    src: "/memories/memory-upside-down.jpg",
+    caption: "Hangin' upside down 🙃",
+    frame: "tropical",
+  },
+  {
+    src: "/memories/memory-cinema.jpg",
+    caption: "Movie date, main characters 🎬",
+    frame: "postcard",
+  },
+  {
+    src: "/memories/memory-window-grins.jpg",
+    caption: "Window-seat grins 👓",
+    frame: "candy",
+  },
+  {
+    src: "/memories/memory-stadium.jpg",
+    caption: "Stadium nights 🏟️",
+    frame: "beach",
+  },
+  {
+    src: "/memories/memory-temple-night.jpg",
+    caption: "Temple visit 🙏",
+    frame: "postcard",
+  },
+  {
+    src: "/memories/memory-jungle.jpg",
+    caption: "Into the woods 🌿",
+    frame: "tropical",
+  },
+  {
+    src: "/memories/memory-blossom-tree.jpg",
+    caption: "Under the blossom tree 🌸",
+    frame: "beach",
+  },
+  {
+    src: "/memories/memory-forest-this-way.jpg",
+    caption: "This way, birthday girl 👉",
+    frame: "tropical",
+  },
+  {
+    src: "/memories/memory-learning-matters.jpg",
+    caption: "Learning Matters night 💜",
+    frame: "candy",
+  },
 ];
 
 const MEMORY_TILTS = ["-rotate-2", "rotate-2", "-rotate-1", "rotate-1", "rotate-2", "-rotate-2"];
@@ -187,10 +278,21 @@ function WishCard({
 
 function BirthdayParty() {
   const [candles, setCandles] = useState<boolean[]>([false, false, false, false, false]);
-  
   const [wrongPicks, setWrongPicks] = useState<string[]>([]);
   const [quizSolved, setQuizSolved] = useState(false);
   const [flipped, setFlipped] = useState<boolean[]>(WISHES.map(() => false));
+  const [memoryApi, setMemoryApi] = useState<CarouselApi>();
+  const [memoryIndex, setMemoryIndex] = useState(0);
+
+  useEffect(() => {
+    if (!memoryApi) return;
+    const sync = () => setMemoryIndex(memoryApi.selectedScrollSnap());
+    sync();
+    memoryApi.on("select", sync);
+    return () => {
+      memoryApi.off("select", sync);
+    };
+  }, [memoryApi]);
 
   const candlesLeft = candles.filter((c) => !c).length;
 
@@ -324,38 +426,39 @@ function BirthdayParty() {
 
       {/* LEVEL 2 — MEMORIES */}
       <section id="memories" className="border-y-2 border-inkwell/10 bg-sunshine/20">
-        <div className="mx-auto max-w-4xl px-5 py-16 text-center">
+        <div className="mx-auto max-w-4xl px-5 pt-16 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-candy">
             Level 2 · the memory lane
           </p>
           <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Us, framed 🖼️</h2>
           <p className="mx-auto mt-3 max-w-md text-inkwell/70">
-            A little wall of our favourite moments — the ones I'll never stop talking about.
+            Swipe through our favourite moments — the ones I'll never stop talking about.
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
-            {MEMORIES.map((m, i) => (
-              <div
-                key={m.caption}
-                className={`animate-pop-in rounded-2xl border-2 border-inkwell/10 bg-cake p-3 shadow-lg transition-transform hover:scale-105 hover:rotate-0 ${MEMORY_TILTS[i % MEMORY_TILTS.length]}`}
-              >
-                {m.src ? (
-                  <img
-                    src={m.src}
-                    alt={m.caption}
-                    className="aspect-square w-full rounded-xl object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="flex aspect-square w-full items-center justify-center rounded-xl border-2 border-dashed border-inkwell/20 bg-candy/10 text-4xl">
-                    📷
+        </div>
+        <div className="relative mx-auto mt-8 max-w-6xl px-4 pb-16 sm:px-14">
+          <Carousel
+            className="w-full"
+            opts={{ align: "center", loop: true }}
+            setApi={setMemoryApi}
+          >
+            <CarouselContent className="-ml-4 items-center">
+              {MEMORIES.map((m, i) => (
+                <CarouselItem
+                  key={m.src}
+                  className="basis-[88%] pl-4 sm:basis-[58%] md:basis-[42%] lg:basis-[36%]"
+                >
+                  <div className="px-1 py-6">
+                    <MemoryFrame memory={m} tilt={MEMORY_TILTS[i % MEMORY_TILTS.length]} />
                   </div>
-                )}
-                <p className="mt-3 font-display text-sm font-semibold text-inkwell/80">
-                  {m.caption}
-                </p>
-              </div>
-            ))}
-          </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0 h-11 w-11 border-2 border-inkwell/15 bg-cake text-inkwell shadow-md hover:bg-candy hover:text-cake sm:-left-4" />
+            <CarouselNext className="right-0 h-11 w-11 border-2 border-inkwell/15 bg-cake text-inkwell shadow-md hover:bg-candy hover:text-cake sm:-right-4" />
+          </Carousel>
+          <p className="mt-2 text-center font-display text-sm font-semibold text-inkwell/60">
+            {memoryIndex + 1} / {MEMORIES.length}
+          </p>
         </div>
       </section>
 
