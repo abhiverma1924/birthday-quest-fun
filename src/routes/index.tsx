@@ -272,8 +272,7 @@ function BirthdayParty() {
         </p>
         <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Blow out the candles</h2>
         <p className="mx-auto mt-3 max-w-md text-inkwell/70">
-          Five candles, one wish. Tap each flame — with your finger, because blowing at your phone
-          won't work. We checked.
+          Five candles, five wishes — all yours. Tap each flame to blow it out and unwrap a wish.
         </p>
         <div className="mt-12 flex items-end justify-center gap-4 sm:gap-6">
           {candles.map((out, i) => (
