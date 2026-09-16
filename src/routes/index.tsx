@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A tiny, silly birthday game built with love — blow out the candles, whack the piñata, and claim your real gift.",
+          "A tiny, silly birthday game built with love — blow out the candles, walk down memory lane, and claim your real gift.",
       },
       { property: "og:title", content: "Happy Birthday, Shivani! 🎉" },
       {
@@ -67,17 +67,18 @@ async function popConfetti(big = false) {
   }
 }
 
-const PINATA_MESSAGES = [
-  "Ouch! First hit — you're a natural. 🥊",
-  "The piñata is officially sweating.",
-  "Achievement unlocked: Certified Piñata Bully 🏆",
-  "It just apologized. That won't save it.",
-  "Halfway there! Your lawyer has been notified.",
-  "The piñata's family is watching. Awkward.",
-  "This counts as cardio, by the way. You're welcome.",
-  "It's holding on by a thread and pure spite.",
-  "ONE more hit. The candy demands freedom!",
+type Memory = { src?: string; caption: string };
+
+const MEMORIES: Memory[] = [
+  { caption: "Memory #1" },
+  { caption: "Memory #2" },
+  { caption: "Memory #3" },
+  { caption: "Memory #4" },
+  { caption: "Memory #5" },
+  { caption: "Memory #6" },
 ];
+
+const MEMORY_TILTS = ["-rotate-2", "rotate-2", "-rotate-1", "rotate-1", "rotate-2", "-rotate-2"];
 
 type QuizOption = { label: string; roast?: string; correct?: boolean };
 
@@ -186,7 +187,7 @@ function WishCard({
 
 function BirthdayParty() {
   const [candles, setCandles] = useState<boolean[]>([false, false, false, false, false]);
-  const [hits, setHits] = useState(0);
+  
   const [wrongPicks, setWrongPicks] = useState<string[]>([]);
   const [quizSolved, setQuizSolved] = useState(false);
   const [flipped, setFlipped] = useState<boolean[]>(WISHES.map(() => false));
@@ -201,12 +202,6 @@ function BirthdayParty() {
     void popConfetti(next.every(Boolean));
   };
 
-  const whack = () => {
-    if (hits >= 10) return;
-    const next = hits + 1;
-    setHits(next);
-    if (next === 10) void popConfetti(true);
-  };
 
   const answer = (opt: QuizOption) => {
     if (quizSolved || wrongPicks.includes(opt.label)) return;
@@ -228,7 +223,7 @@ function BirthdayParty() {
 
   const replay = () => {
     setCandles([false, false, false, false, false]);
-    setHits(0);
+    
     setWrongPicks([]);
     setQuizSolved(false);
     setFlipped(WISHES.map(() => false));
@@ -327,43 +322,40 @@ function BirthdayParty() {
         )}
       </section>
 
-      {/* LEVEL 2 — PIÑATA */}
-      <section id="pinata" className="border-y-2 border-inkwell/10 bg-sunshine/20">
-        <div className="mx-auto max-w-3xl px-5 py-16 text-center">
+      {/* LEVEL 2 — MEMORIES */}
+      <section id="memories" className="border-y-2 border-inkwell/10 bg-sunshine/20">
+        <div className="mx-auto max-w-4xl px-5 py-16 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-candy">
-            Level 2 · the mini-game
+            Level 2 · the memory lane
           </p>
-          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Whack the piñata</h2>
+          <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Us, framed 🖼️</h2>
           <p className="mx-auto mt-3 max-w-md text-inkwell/70">
-            Ten good whacks and the candy is yours. The piñata consented. Probably.
+            A little wall of our favourite moments — the ones I'll never stop talking about.
           </p>
-          <button
-            onClick={whack}
-            aria-label="Whack the piñata"
-            className="mt-8 select-none text-7xl transition-transform active:scale-90 sm:text-8xl"
-          >
-            {hits >= 10 ? (
-              <span className="animate-pop-in inline-block">🎉</span>
-            ) : (
-              <span key={hits} className="animate-shake inline-block">
-                🪅
-              </span>
-            )}
-          </button>
-          <p className="mt-5 min-h-7 font-display text-lg font-semibold">
-            {hits === 0
-              ? "Ready when you are — give it a whack!"
-              : hits >= 10
-                ? "IT'S OPEN! Candy everywhere. You absolute monster. 💜"
-                : PINATA_MESSAGES[hits - 1]}
-          </p>
-          <div className="mx-auto mt-4 h-3 w-64 max-w-full overflow-hidden rounded-full border-2 border-inkwell/10 bg-cake">
-            <div
-              className="h-full rounded-full bg-candy transition-all duration-300"
-              style={{ width: `${hits * 10}%` }}
-            />
+          <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3">
+            {MEMORIES.map((m, i) => (
+              <div
+                key={m.caption}
+                className={`animate-pop-in rounded-2xl border-2 border-inkwell/10 bg-cake p-3 shadow-lg transition-transform hover:scale-105 hover:rotate-0 ${MEMORY_TILTS[i % MEMORY_TILTS.length]}`}
+              >
+                {m.src ? (
+                  <img
+                    src={m.src}
+                    alt={m.caption}
+                    className="aspect-square w-full rounded-xl object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="flex aspect-square w-full items-center justify-center rounded-xl border-2 border-dashed border-inkwell/20 bg-candy/10 text-4xl">
+                    📷
+                  </div>
+                )}
+                <p className="mt-3 font-display text-sm font-semibold text-inkwell/80">
+                  {m.caption}
+                </p>
+              </div>
+            ))}
           </div>
-          <p className="mt-2 text-sm font-bold text-inkwell/60">{hits} / 10 whacks</p>
         </div>
       </section>
 
@@ -510,7 +502,7 @@ function BirthdayParty() {
 
       <footer className="bg-inkwell py-6 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-cake/60">
-          Made with too much confetti · no piñatas were permanently harmed
+          Made with too much confetti · and all my love
         </p>
       </footer>
     </div>
