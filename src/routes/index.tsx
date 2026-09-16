@@ -88,6 +88,16 @@ const QUIZ_OPTIONS: QuizOption[] = [
   { label: "Infinity (plus snacks)", correct: true },
 ];
 
+const CANDLE_WISHES = [
+  "🍕 All the pizza dates you want — my treat, forever.",
+  "🛍️ Unlimited shopping trips with zero complaining from me.",
+  "🛏️ First pick of the blanket, every single night.",
+  "🎂 Birthday cake for breakfast. It's your day, no rules.",
+  "❤️ Me — for the rest of your life. Non-refundable.",
+];
+
+const CANDLE_WISH_TINTS = ["bg-minty/25", "bg-skyblue/25", "bg-sunshine/30", "bg-bubblegum/25", "bg-candy/15"];
+
 const WISHES = [
   {
     emoji: "🏆",
