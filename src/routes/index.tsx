@@ -413,20 +413,66 @@ function BirthdayParty() {
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-cake/80">
             Level complete · the real gift
           </p>
-          <div className="mt-6 rounded-3xl bg-cake p-8 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.3)] sm:p-12">
-            <span className="text-5xl">🎁</span>
-            <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">
+          <div className="mt-6 rounded-3xl bg-cake p-8 text-left shadow-[0_16px_40px_-16px_rgba(0,0,0,0.3)] sm:p-12">
+            <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">
               Happy birthday, Shivani. ❤️
             </h2>
-            <p className="mt-4 text-lg text-inkwell/80">
-              All the games and silly jokes were just wrapping paper. The real gift is simply
-              this: I get another year of you — your laugh, your weirdness, your snacks. Here's to
-              more adventures, more laughter, and way more cake. You're my favorite person, today
-              and every day.
-            </p>
-            <p className="mt-6 font-display text-xl font-bold text-candy">
-              — With all my love ❤️
-            </p>
+            <div className="mt-6 space-y-5 text-lg leading-relaxed text-inkwell/85">
+              <p>
+                Happy Birthday to my favourite person, my childhood friend, my partner, and
+                hopefully, the person I get to grow old with. ❤️
+              </p>
+              <p>
+                Sometimes I think about how crazy it is that we've known each other for so long.
+                We were just kids when our story started, and neither of us probably imagined
+                that all these years later, you would still be such a huge part of my life.
+              </p>
+              <p>
+                We've literally grown up together. We've seen different versions of each other —
+                the childish ones, the annoying ones, the emotional ones, the ambitious ones, and
+                all the versions in between. 😂❤️ And somehow, with every year, every experience,
+                every little fight and every beautiful memory, our bond has only become stronger.
+              </p>
+              <p>
+                You're not just someone I love. You're someone who has been there through so many
+                phases of my life that it's hard to separate my memories from you. When I think
+                about my past, you're there. When I think about my present, you're there. And
+                when I imagine my future, somehow, it's always you standing next to me.
+              </p>
+              <p>
+                I don't know exactly what life will look like for us years from now. But I know
+                what I want — I want us to keep choosing each other. I want more random
+                conversations, stupid fights, late-night talks, travelling together, celebrating
+                little things, making memories, annoying each other, laughing at things nobody
+                else understands, and growing old together.
+              </p>
+              <p>
+                I want to be there when you achieve the things you dream about. I want to hold
+                your hand when life gets difficult. I want to celebrate every little success with
+                you. And honestly, I want to be the person you can always come home to.
+              </p>
+              <p>
+                We started this journey as kids, and I feel incredibly lucky that life gave me
+                the chance to grow up with you. ❤️
+              </p>
+              <p>
+                On your birthday, more than anything, I just want you to know that I still choose
+                you, and I want to keep choosing you for the rest of my life.
+              </p>
+              <p>
+                Here's to everything we've already lived together, and to all the years,
+                adventures, memories and birthdays that are still waiting for us.
+              </p>
+            </div>
+            <div className="mt-8 border-t-2 border-dashed border-candy/30 pt-6 text-center">
+              <p className="font-display text-2xl font-bold text-candy">
+                I love you more than I can put into words. And I hope I get to spend a lifetime
+                showing you. ❤️🥹
+              </p>
+              <p className="mt-4 font-display text-xl font-bold text-inkwell">
+                — With all my love ❤️
+              </p>
+            </div>
           </div>
           <button
             onClick={replay}
