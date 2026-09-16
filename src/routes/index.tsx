@@ -4,13 +4,13 @@ import { useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Happy Birthday, Beautiful! 🎉" },
+      { title: "Happy Birthday, Shivani! 🎉" },
       {
         name: "description",
         content:
           "A tiny, silly birthday game built with love — blow out the candles, whack the piñata, and claim your real gift.",
       },
-      { property: "og:title", content: "Happy Birthday, Beautiful! 🎉" },
+      { property: "og:title", content: "Happy Birthday, Shivani! 🎉" },
       {
         property: "og:description",
         content:
@@ -233,14 +233,14 @@ function BirthdayParty() {
         <Balloons />
         <div className="relative mx-auto max-w-3xl px-5 pb-16 pt-14 text-center sm:pt-20">
           <span className="animate-wiggle inline-block rounded-full bg-sunshine px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-inkwell">
-            Player 1 · it's your day
+            Shivani · it's your day
           </span>
           <h1 className="mt-5 font-display text-5xl font-bold leading-[0.95] sm:text-7xl">
             Happy
             <br />
             Birthday,
             <br />
-            <span className="text-candy">Beautiful! 🎈</span>
+            <span className="text-candy">Shivani! 🎈</span>
           </h1>
           <p className="mx-auto mt-5 max-w-md text-lg text-inkwell/70">
             You've unlocked a top-secret birthday mission: blow out the candles, whack a piñata,
@@ -416,7 +416,7 @@ function BirthdayParty() {
           <div className="mt-6 rounded-3xl bg-cake p-8 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.3)] sm:p-12">
             <span className="text-5xl">🎁</span>
             <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">
-              Happy birthday, my love.
+              Happy birthday, Shivani. ❤️
             </h2>
             <p className="mt-4 text-lg text-inkwell/80">
               All the games and silly jokes were just wrapping paper. The real gift is simply
