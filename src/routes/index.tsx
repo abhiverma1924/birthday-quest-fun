@@ -300,9 +300,25 @@ function BirthdayParty() {
           </div>
           <div className="mx-auto h-2 w-4/5 rounded-full bg-sunshine" />
         </div>
+        {candles.some(Boolean) && (
+          <ul className="mx-auto mt-8 grid max-w-xl gap-3">
+            {candles.map((out, i) =>
+              out ? (
+                <li
+                  key={i}
+                  className={`animate-pop-in rounded-2xl px-5 py-3 font-display text-base font-semibold text-inkwell shadow-sm ${
+                    CANDLE_WISH_TINTS[i] ?? "bg-sunshine/30"
+                  }`}
+                >
+                  Wish {i + 1} unlocked: {CANDLE_WISHES[i] ?? ""}
+                </li>
+              ) : null,
+            )}
+          </ul>
+        )}
         {candlesLeft === 0 ? (
           <p className="animate-pop-in mt-8 font-display text-2xl font-bold text-candy">
-            All out! Your wish is officially pending. 🌟
+            All 5 wishes are yours. Happy birthday, Shivani! 🌟
           </p>
         ) : (
           <p className="mt-8 text-inkwell/60">
