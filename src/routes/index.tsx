@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A tiny, silly birthday game built with love — blow out the candles, whack the piñata, and claim your real gift.",
+          "A tiny, silly birthday game built with love — blow out the candles, walk down memory lane, and claim your real gift.",
       },
       { property: "og:title", content: "Happy Birthday, Shivani! 🎉" },
       {
@@ -187,7 +187,7 @@ function WishCard({
 
 function BirthdayParty() {
   const [candles, setCandles] = useState<boolean[]>([false, false, false, false, false]);
-  const [hits, setHits] = useState(0);
+  
   const [wrongPicks, setWrongPicks] = useState<string[]>([]);
   const [quizSolved, setQuizSolved] = useState(false);
   const [flipped, setFlipped] = useState<boolean[]>(WISHES.map(() => false));
@@ -202,12 +202,6 @@ function BirthdayParty() {
     void popConfetti(next.every(Boolean));
   };
 
-  const whack = () => {
-    if (hits >= 10) return;
-    const next = hits + 1;
-    setHits(next);
-    if (next === 10) void popConfetti(true);
-  };
 
   const answer = (opt: QuizOption) => {
     if (quizSolved || wrongPicks.includes(opt.label)) return;
@@ -229,7 +223,7 @@ function BirthdayParty() {
 
   const replay = () => {
     setCandles([false, false, false, false, false]);
-    setHits(0);
+    
     setWrongPicks([]);
     setQuizSolved(false);
     setFlipped(WISHES.map(() => false));
@@ -508,7 +502,7 @@ function BirthdayParty() {
 
       <footer className="bg-inkwell py-6 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-cake/60">
-          Made with too much confetti · no piñatas were permanently harmed
+          Made with too much confetti · and all my love
         </p>
       </footer>
     </div>
