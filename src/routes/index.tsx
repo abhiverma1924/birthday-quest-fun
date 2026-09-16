@@ -92,7 +92,7 @@ const CANDLE_WISHES = [
   "🍕 All the pizza dates you want — my treat, forever.",
   "🛍️ Unlimited shopping trips with zero complaining from me.",
   "🛏️ First pick of the blanket, every single night.",
-  "🎂 Birthday cake for breakfast. It's your day, no rules.",
+  "🛡️ For all your life, I'll be your shield — nothing gets past me.",
   "❤️ Me — for the rest of your life. Non-refundable.",
 ];
 
