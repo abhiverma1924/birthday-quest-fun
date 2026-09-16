@@ -88,6 +88,16 @@ const QUIZ_OPTIONS: QuizOption[] = [
   { label: "Infinity (plus snacks)", correct: true },
 ];
 
+const CANDLE_WISHES = [
+  "🍕 All the pizza dates you want — my treat, forever.",
+  "🛍️ Unlimited shopping trips with zero complaining from me.",
+  "🛏️ First pick of the blanket, every single night.",
+  "🎂 Birthday cake for breakfast. It's your day, no rules.",
+  "❤️ Me — for the rest of your life. Non-refundable.",
+];
+
+const CANDLE_WISH_TINTS = ["bg-minty/25", "bg-skyblue/25", "bg-sunshine/30", "bg-bubblegum/25", "bg-candy/15"];
+
 const WISHES = [
   {
     emoji: "🏆",
@@ -262,8 +272,7 @@ function BirthdayParty() {
         </p>
         <h2 className="mt-3 font-display text-4xl font-bold sm:text-5xl">Blow out the candles</h2>
         <p className="mx-auto mt-3 max-w-md text-inkwell/70">
-          Five candles, one wish. Tap each flame — with your finger, because blowing at your phone
-          won't work. We checked.
+          Five candles, five wishes — all yours. Tap each flame to blow it out and unwrap a wish.
         </p>
         <div className="mt-12 flex items-end justify-center gap-4 sm:gap-6">
           {candles.map((out, i) => (
@@ -291,9 +300,25 @@ function BirthdayParty() {
           </div>
           <div className="mx-auto h-2 w-4/5 rounded-full bg-sunshine" />
         </div>
+        {candles.some(Boolean) && (
+          <ul className="mx-auto mt-8 grid max-w-xl gap-3">
+            {candles.map((out, i) =>
+              out ? (
+                <li
+                  key={i}
+                  className={`animate-pop-in rounded-2xl px-5 py-3 font-display text-base font-semibold text-inkwell shadow-sm ${
+                    CANDLE_WISH_TINTS[i] ?? "bg-sunshine/30"
+                  }`}
+                >
+                  Wish {i + 1} unlocked: {CANDLE_WISHES[i] ?? ""}
+                </li>
+              ) : null,
+            )}
+          </ul>
+        )}
         {candlesLeft === 0 ? (
           <p className="animate-pop-in mt-8 font-display text-2xl font-bold text-candy">
-            All out! Your wish is officially pending. 🌟
+            All 5 wishes are yours. Happy birthday, Shivani! 🌟
           </p>
         ) : (
           <p className="mt-8 text-inkwell/60">
