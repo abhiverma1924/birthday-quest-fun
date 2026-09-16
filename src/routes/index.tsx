@@ -253,8 +253,9 @@ function BirthdayParty() {
             <span className="text-candy">Shivani! 🎈</span>
           </h1>
           <p className="mx-auto mt-5 max-w-md text-lg text-inkwell/70">
-            You've unlocked a top-secret birthday mission: blow out the candles, whack a piñata,
-            and claim your real gift. No pressure. (Tiny pressure.)
+            Congratulations! You've been officially selected as the girlfriend of the world's
+            smartest boyfriend. 🏆 Your prize? A top-secret birthday mission: blow out the
+            candles, whack a piñata, and claim your real gift. No pressure. (Tiny pressure.)
           </p>
           <a
             href="#candles"
