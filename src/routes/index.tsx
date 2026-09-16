@@ -176,7 +176,7 @@ type QuizOption = { label: string; roast?: string; correct?: boolean };
 const QUIZ_OPTIONS: QuizOption[] = [
   { label: "A lot", roast: "Cute guess. Wrong. Try again 💅" },
   { label: "To the moon and back", roast: "Adorable. Still not enough. Again!" },
-  { label: "More than pizza", roast: "Bold claim! But no — pizza is sacred." },
+  { label: "More Than my laptop", roast: "Bold claim! But no — the laptop is sacred." },
   { label: "Infinity (plus snacks)", correct: true },
 ];
 
