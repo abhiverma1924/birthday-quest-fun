@@ -340,7 +340,7 @@ function BirthdayParty() {
         <Balloons />
         <div className="relative mx-auto max-w-3xl px-5 pb-16 pt-14 text-center sm:pt-20">
           <span className="animate-wiggle inline-block rounded-full bg-sunshine px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-inkwell">
-            Shivani · it's your day
+            Bubu Rani · it's your day
           </span>
           <h1 className="mt-5 font-display text-5xl font-bold leading-[0.95] sm:text-7xl">
             Happy
